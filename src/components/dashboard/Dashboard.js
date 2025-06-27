@@ -687,6 +687,14 @@ function Dashboard() {
               <p>Création de sites web</p>
               <p>Solutions NFC</p>
               <p>Pages Jaunes</p>
+              <p>Référencement</p>
+              <p>Publicité en ligne</p>
+              <p>Community Management</p>
+              <p>E-réputation</p>
+              <p>SEO</p>
+              <p>SEA</p>
+              <p>Forfait DUO</p>
+              <p>Le TRIO</p>
             </div>
 
             {/* Section Expertises */}
