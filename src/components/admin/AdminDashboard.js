@@ -189,7 +189,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "#f8fafc" }}>
+    <Box sx={{ display: "flex", minHeight: "100vh", bgcolor: "linear-gradient(135deg, #ede7f6 0%, #fff 100%)" }}>
       {/* Sidebar admin */}
       <Drawer
         variant="permanent"
@@ -316,19 +316,55 @@ const AdminDashboard = () => {
         </List>
       </Drawer>
 
-      {/* Main Content */}
+      {/* Main Content modernisé */}
       <Container maxWidth="xl" sx={{ py: 3, ml: isExpanded ? `${sidebarWidthExpanded}px` : `${sidebarWidthCollapsed}px`, transition: 'margin-left 0.3s' }}>
-        <Box sx={{ mb: 4 }}>
-          <Typography variant="h4" sx={{ mb: 1, fontWeight: 600 }}>
-            Tableau de bord Administrateur
-          </Typography>
-          <Typography variant="body1" color="text.secondary">
-            Bienvenue sur l'interface d'administration DMM
-          </Typography>
+        {/* En-tête admin modernisé */}
+        <Box sx={{ display: "flex", alignItems: "center", mb: 4 }}>
+          <Avatar sx={{ bgcolor: "#663399", width: 56, height: 56, mr: 2 }}>A</Avatar>
+          <Box>
+            <Typography variant="h4" sx={{ fontWeight: 800, color: "#663399" }}>
+              Espace Administrateur
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              Bienvenue sur l'interface d'administration DMM
+            </Typography>
+          </Box>
         </Box>
 
-        {/* Section Statistiques */}
-        <Paper sx={{ mb: 4, p: 2, bgcolor: '#e3f2fd', borderRadius: 2, boxShadow: 3 }}>
+        {/* Statistiques modernes */}
+        <Grid container spacing={3} sx={{ mb: 4 }}>
+          <Grid item xs={12} md={3}>
+            <Paper sx={{ borderRadius: 4, boxShadow: 3, p: 2, bgcolor: "#ede7f6", textAlign: "center", transition: "transform 0.2s", '&:hover': { transform: 'translateY(-5px)' } }}>
+              <ShoppingCartIcon sx={{ fontSize: 40, color: "#663399", mb: 1 }} />
+              <Typography variant="h5" sx={{ fontWeight: 700 }}>{clients.length}</Typography>
+              <Typography color="text.secondary">Projets</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Paper sx={{ borderRadius: 4, boxShadow: 3, p: 2, bgcolor: "#e3f2fd", textAlign: "center", transition: "transform 0.2s", '&:hover': { transform: 'translateY(-5px)' } }}>
+              <PeopleIcon sx={{ fontSize: 40, color: "#1976d2", mb: 1 }} />
+              <Typography variant="h5" sx={{ fontWeight: 700 }}>{totalClients}</Typography>
+              <Typography color="text.secondary">Clients</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Paper sx={{ borderRadius: 4, boxShadow: 3, p: 2, bgcolor: "#e0f7fa", textAlign: "center", transition: "transform 0.2s", '&:hover': { transform: 'translateY(-5px)' } }}>
+              <AssignmentIcon sx={{ fontSize: 40, color: "#009cde", mb: 1 }} />
+              <Typography variant="h5" sx={{ fontWeight: 700 }}>{totalServices}</Typography>
+              <Typography color="text.secondary">Services</Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <Paper sx={{ borderRadius: 4, boxShadow: 3, p: 2, bgcolor: "#e8f5e9", textAlign: "center", transition: "transform 0.2s", '&:hover': { transform: 'translateY(-5px)' } }}>
+              <ReceiptIcon sx={{ fontSize: 40, color: "#43a047", mb: 1 }} />
+              <Typography variant="h5" sx={{ fontWeight: 700 }}>{totalClicks}</Typography>
+              <Typography color="text.secondary">Clics Totaux</Typography>
+            </Paper>
+          </Grid>
+        </Grid>
+
+        {/* Section Statistiques (ancienne version, à garder si besoin) */}
+        {/* <Paper sx={{ mb: 4, p: 2, bgcolor: '#e3f2fd', borderRadius: 2, boxShadow: 3 }}>
           <Typography variant="h6" sx={{ mb: 2, fontWeight: 600, color: '#3f51b5' }}>
             Statistiques Clients
           </Typography>
@@ -358,7 +394,7 @@ const AdminDashboard = () => {
               </Paper>
             </Grid>
           </Grid>
-        </Paper>
+        </Paper> */}
 
         {/* Barre de recherche */}
         <Box sx={{ mb: 3, display: "flex", justifyContent: "flex-end" }}>
@@ -380,13 +416,43 @@ const AdminDashboard = () => {
         </Box>
 
         {/* Tableau des projets */}
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: 22, md: 28 }, fontWeight: 700 }}>
           Liste des projets (API maplateforme.io)
         </Typography>
         {loading && <CircularProgress />}
         {error && <Alert severity="error">{error}</Alert>}
-        <TableContainer component={Paper}>
-          <Table>
+        <TableContainer component={Paper} sx={{
+          mt: 2,
+          borderRadius: 3,
+          boxShadow: 2,
+          width: '100%', // Prend toute la largeur du conteneur parent
+          minWidth: 0,
+          maxWidth: '100%',
+          overflowX: 'auto', // Permet le scroll horizontal uniquement si nécessaire (devrait être inutile avec les styles ci-dessous)
+        }}>
+          <Table sx={{
+            width: '100%',
+            minWidth: 0,
+            maxWidth: '100%',
+            tableLayout: 'auto', // Permet aux colonnes de s'adapter au contenu
+            fontSize: { xs: 18, md: 22 },
+            '& .MuiTableCell-root': {
+              fontSize: { xs: 18, md: 22 },
+              fontWeight: 600,
+              padding: { xs: '10px 6px', md: '18px 14px' },
+              color: '#222',
+              maxWidth: 220,
+              wordBreak: 'break-word',
+              whiteSpace: 'normal',
+            },
+            '& .MuiTableHead-root .MuiTableCell-root': {
+              background: '#ede7f6',
+              color: '#663399',
+              fontWeight: 800,
+              fontSize: { xs: 20, md: 24 },
+              borderBottom: '2px solid #d1c4e9',
+            },
+          }}>
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
@@ -409,17 +475,18 @@ const AdminDashboard = () => {
                     <Button
                       variant="outlined"
                       color="primary"
-                      size="small"
+                      size="large"
                       onClick={() => handleEdit(row)}
-                      sx={{ mr: 1 }}
+                      sx={{ mr: 1, fontSize: { xs: 16, md: 20 }, borderRadius: 2, fontWeight: 700 }}
                     >
                       Modifier
                     </Button>
                     <Button
                       variant="outlined"
                       color="error"
-                      size="small"
+                      size="large"
                       onClick={() => handleDelete(row)}
+                      sx={{ fontSize: { xs: 16, md: 20 }, borderRadius: 2, fontWeight: 700 }}
                     >
                       Supprimer
                     </Button>
@@ -428,7 +495,7 @@ const AdminDashboard = () => {
               ))}
               {filteredProjects.length === 0 && !loading && !error && (
                 <TableRow>
-                  <TableCell colSpan={6}>Aucun projet trouvé.</TableCell>
+                  <TableCell colSpan={6} sx={{ textAlign: 'center', color: '#aaa', fontSize: 22 }}>Aucun projet trouvé.</TableCell>
                 </TableRow>
               )}
             </TableBody>
@@ -512,16 +579,16 @@ const AdminDashboard = () => {
           </DialogActions>
         </Dialog>
 
-        {/* Statistiques globales */}
-        <Grid container spacing={2} sx={{ mb: 4 }}>
+        {/* Statistiques globales (ancienne version, à garder si besoin) */}
+        {/* <Grid container spacing={2} sx={{ mb: 4 }}>
           <Grid item xs={12} md={3}>
             <Paper sx={{ p: 2, textAlign: 'center' }}>
               <Typography variant="h6">Projets</Typography>
               <Typography variant="h4">{clients.length}</Typography>
             </Paper>
           </Grid>
-          {/* Ajoute d'autres cards statistiques ici si besoin */}
-        </Grid>
+          /!* Ajoute d'autres cards statistiques ici si besoin *!/
+        </Grid> */}
 
       </Container>
     </Box>
