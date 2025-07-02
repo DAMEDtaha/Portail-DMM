@@ -198,12 +198,13 @@ const Login = () => {
         justifyContent: 'center',
         alignItems: 'center',
         minHeight: '100vh',
+        maxWidth: 4700,
         p: 2
       }}>
         <Box sx={{
           display: 'flex',
           width: '100%',
-          maxWidth: 900,
+          maxWidth: 4700,
           borderRadius: 3,
           overflow: 'hidden',
           boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
@@ -213,14 +214,18 @@ const Login = () => {
             sx={{
               flex: 1,
               minHeight: 500,
+              maxWidth: '50%',
+              width: '50%',
               backgroundImage: `url(${backgroundImage})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               position: 'relative',
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
             <Box sx={{ position: 'absolute', top: 20, left: 20 }}>
-              <img src={logo} alt="DMM Logo" style={{ height: 40 }} />
+              <img src={logo} alt="DMM Logo" style={{ height: 150, maxWidth: 280 }} />
             </Box>
             <Button
               variant="contained"
@@ -243,8 +248,9 @@ const Login = () => {
           {/* Right section */}
           <Box
             sx={{
-              width: '100%',
-              maxWidth: 400,
+              flex: 1,
+              maxWidth: '50%',
+              width: '50%',
               bgcolor: 'white',
               p: 4,
               display: 'flex',
@@ -252,7 +258,7 @@ const Login = () => {
               justifyContent: 'center',
             }}
           >
-            <img src={logo} alt="DMM Logo" style={{ height: 50, marginBottom: 20, alignSelf: 'center' }} />
+            <img src={logo} alt="DMM Logo" style={{ height: 110, marginBottom: 28, alignSelf: 'center' }} />
 
             <Typography component="h1" variant="h5" sx={{ mb: 3, fontWeight: 600, textAlign: 'center' }}>
               Bienvenue, connectez-vous pour continuer
@@ -264,13 +270,14 @@ const Login = () => {
               </Alert>
             )}
 
-            <Box sx={{ width: '100%', mb: 3 }}>
+            <Box sx={{ width: '100%', mb: 3, maxWidth: 500, mx: 'auto', fontSize: '1.35rem' }}>
               <GoogleLogin
                 onSuccess={handleGoogleLogin}
                 onError={() => alert('Erreur Google')}
                 width="100%"
                 theme="outline"
                 size="large"
+                style={{ minWidth: 0, width: '100%' }}
               />
               <FacebookLogin
                 appId="2869193333288683"
@@ -290,16 +297,20 @@ const Login = () => {
                       pl: 2,
                       py: 0.75,
                       fontWeight: 600,
+                      maxWidth: 500,
+                      mx: 'auto',
+                      width: '100%',
+                      fontSize: '1.35rem'
                     }}
                   >
                     Continuer avec Facebook
                   </Button>
                 )}
               />
-              <Divider sx={{ my: 2 }}>Ou continuer avec</Divider>
+              <Divider sx={{ my: 2, maxWidth: 500, mx: 'auto', fontSize: '1.35rem' }}>Ou continuer avec</Divider>
             </Box>
 
-            <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
+            <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%', maxWidth: 500, mx: 'auto', fontSize: '1.35rem' }}>
               <TextField
                 margin="normal"
                 required
@@ -314,7 +325,7 @@ const Login = () => {
                 error={!!emailError}
                 helperText={emailError}
                 size="small"
-                sx={{ mb: 1.5 }}
+                sx={{ mb: 1.5, fontSize: '1.35rem', '& .MuiInputBase-input': { fontSize: '1.35rem' }, '& .MuiInputLabel-root': { fontSize: '1.35rem' } }}
               />
               <TextField
                 margin="normal"
@@ -330,7 +341,7 @@ const Login = () => {
                 error={!!passwordError}
                 helperText={passwordError}
                 size="small"
-                sx={{ mb: 2 }}
+                sx={{ mb: 2, fontSize: '1.35rem', '& .MuiInputBase-input': { fontSize: '1.35rem' }, '& .MuiInputLabel-root': { fontSize: '1.35rem' } }}
               />
 
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
@@ -360,7 +371,12 @@ const Login = () => {
                   bgcolor: '#663399',
                   '&:hover': { bgcolor: '#563399' },
                   textTransform: 'none',
-                  py: 1.5,
+                  py: 1.2,
+                  fontSize: '1.35rem',
+                  minHeight: 44,
+                  maxWidth: 500,
+                  mx: 'auto',
+                  width: '100%'
                 }}
               >
                 Se connecter
@@ -375,11 +391,12 @@ const Login = () => {
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
                 size="small"
+                sx={{ maxWidth: 500, mx: 'auto', fontSize: '1.35rem', '& .MuiInputBase-input': { fontSize: '1.35rem' }, '& .MuiInputLabel-root': { fontSize: '1.35rem' } }}
               />
               <Button 
                 onClick={handleSendOtp}
                 fullWidth
-                sx={{ mt: 1, bgcolor: '#663399', color: '#fff' }}
+                sx={{ mt: 1, bgcolor: '#663399', color: '#fff', py: 1.2, fontSize: '1.35rem', minHeight: 44, maxWidth: 500, mx: 'auto', width: '100%' }}
               >
                 Envoyer le code
               </Button>
@@ -392,12 +409,12 @@ const Login = () => {
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
                     size="small"
-                    sx={{ mt: 2 }}
+                    sx={{ mt: 2, maxWidth: 500, mx: 'auto', fontSize: '1.35rem', '& .MuiInputBase-input': { fontSize: '1.35rem' }, '& .MuiInputLabel-root': { fontSize: '1.35rem' } }}
                   />
                   <Button 
                     onClick={handleVerifyOtp}
                     fullWidth
-                    sx={{ mt: 1, bgcolor: '#663399', color: '#fff' }}
+                    sx={{ mt: 1, bgcolor: '#663399', color: '#fff', py: 1.2, fontSize: '1.35rem', minHeight: 44, maxWidth: 500, mx: 'auto', width: '100%' }}
                   >
                     Vérifier
                   </Button>

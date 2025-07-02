@@ -104,6 +104,7 @@ function Profil() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      overflowX: 'hidden',
     }}>
       <Box sx={{
         width: '100%',
@@ -123,6 +124,7 @@ function Profil() {
         color: '#2d205a',
         fontWeight: 500,
         letterSpacing: 0.2,
+        overflowX: 'hidden',
       }}>
         {/* Header */}
         <Typography variant="h4" sx={{ fontWeight: 900, mb: 3, fontSize: { xs: '2.2rem', md: '2.7rem' }, fontFamily: 'inherit', color: '#663399', letterSpacing: 0.5 }}>

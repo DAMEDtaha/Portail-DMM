@@ -578,18 +578,6 @@ const AdminDashboard = () => {
             </Button>
           </DialogActions>
         </Dialog>
-
-        {/* Statistiques globales (ancienne version, à garder si besoin) */}
-        {/* <Grid container spacing={2} sx={{ mb: 4 }}>
-          <Grid item xs={12} md={3}>
-            <Paper sx={{ p: 2, textAlign: 'center' }}>
-              <Typography variant="h6">Projets</Typography>
-              <Typography variant="h4">{clients.length}</Typography>
-            </Paper>
-          </Grid>
-          /!* Ajoute d'autres cards statistiques ici si besoin *!/
-        </Grid> */}
-
       </Container>
     </Box>
   );

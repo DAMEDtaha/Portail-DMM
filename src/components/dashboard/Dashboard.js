@@ -14,33 +14,6 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import logo from '../../assets/images/logo.png';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts';
 
-const WelcomeSection = styled('section')({
-  backgroundImage: `url(${require('../../assets/images/bienvenue1.png')})`,
-  backgroundSize: "100% 100%", // L'image prend toute la largeur et hauteur du cadre
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "center bottom", // Place l'image en bas pour que le mot 'Bienvenue' soit visible
-  color: "#fff", // Texte couleur blanc
-  padding: "60px 20px 120px 20px", // Ajoute du padding en bas pour ne pas masquer le mot
-  textAlign: "center",
-  position: "relative",
-  minHeight: 420, // Hauteur augmentée pour garantir la visibilité du mot
-  width: '100%',
-  maxWidth: '100%',
-  display: 'flex',
-  alignItems: 'flex-end', // Place le contenu vers le bas pour ne pas masquer le mot
-  justifyContent: 'center',
-  "&::before": {
-    content: '""',
-    position: "absolute",
-    top: 700,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "rgba(102, 51, 153, 0.5)",
-    zIndex: 1,
-  }
-});
-
 const ContentWrapper = styled(Box)({
   position: "relative",
   zIndex: 2
@@ -191,13 +164,15 @@ const ModernFeatureIcon = styled(Avatar)({
 
 const DashboardBackground = styled(Box)({
   minHeight: '100vh',
-  width: '100%', // Correction ici pour éviter le scroll horizontal
+  width: '100%', // Prend toute la largeur de l'écran sans dépasser
   overflowX: 'hidden',
   background: 'linear-gradient(120deg, #f8f9fa 60%, #e3f6fd 100%)',
   position: 'relative',
-  // Ajout pour garantir l'absence de scroll horizontal
   maxWidth: '100vw',
   boxSizing: 'border-box',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'stretch',
 });
 
 const Section = styled(Box)(({ theme }) => ({
@@ -493,22 +468,70 @@ function Dashboard() {
 
   return (
     <DashboardBackground>
-      <WelcomeSection>
-        <ContentWrapper>
-          <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 'bold', fontSize: { xs: 40, md: 64 }, letterSpacing: 2, mb: 2, color: '#fff', textShadow: '0 2px 8px #66339988' }}>
-            {clientName ? ` ${clientName}` : ''} !
+      {/* Ajout d'une petite navbar en haut du dashboard */}
+      <Box sx={{
+        width: '100%',
+        bgcolor: '#663399',
+        color: '#fff',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        px: { xs: 2, md: 6 },
+        py: { xs: 2, md: 2.5 },
+        minHeight: { xs: 60, md: 80 },
+        boxShadow: '0 2px 12px #66339922',
+        position: 'sticky',
+        top: 0,
+        zIndex: 100,
+      }}>
+        {/* Partie gauche : nom de l'entreprise */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1 }}>
+          <Typography sx={{ fontWeight: 700, fontSize: { xs: 18, md: 26 }, letterSpacing: 1, textShadow: '0 2px 8px #4b1c7d88' }}>
+            Digital Media Mobile
           </Typography>
-          <Typography variant="h5" sx={{ fontSize: { xs: 24, md: 32 }, mb: 1, color: '#fff', textShadow: '0 2px 8px #66339988' }}>
-            Heureux de vous revoir sur Votre  Portail Digital Media Mobile.
+        </Box>
+        {/* Partie centrale : message de bienvenue + nom utilisateur */}
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
+          <Typography sx={{ fontWeight: 700, fontSize: { xs: 22, md: 32 }, letterSpacing: 1, textShadow: '0 2px 8px #4b1c7d88', textAlign: 'center', width: '100%' }}>
+            Bienvenue{clientName ? `, ${clientName}` : ''} !
           </Typography>
-        </ContentWrapper>
-      </WelcomeSection>
+        </Box>
+       {/* Partie droite : bouton déconnexion */}
+<Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', flex: 1.5, ml: 1 }}>
+  <button
+    onClick={() => {
+      localStorage.removeItem('clientEmail');
+      window.location.href = '/';
+    }}
+    style={{
+      background: '#fff',
+      color: '#663399',
+      border: 'none',
+      borderRadius: 8,
+      padding: '8px 22px',
+      fontWeight: 700,
+      fontSize: '1.1rem',
+      cursor: 'pointer',
+      boxShadow: '0 2px 8px #fff4',
+      transition: 'background 0.2s',
+      marginLeft: 'auto', // ← on garde cette ligne pour le pousser à droite
+      display: 'block',
+      maxWidth: '100%',
+      whiteSpace: 'nowrap',
+      minWidth: 120,
+    }}
+  >
+    Déconnexion
+  </button>
+</Box>
+
+      </Box>  
 
       <Container maxWidth={false} disableGutters sx={{
         px: 0,
-        width: '100%',
+        width: '100%', // Correction ici
         m: 0,
-        maxWidth: '100%',
+        maxWidth: '100vw', // Correction ici
         overflowX: 'hidden',
         boxSizing: 'border-box',
         bgcolor: '#fff',
@@ -517,8 +540,8 @@ function Dashboard() {
       }}>
         {/* Section principale full width */}
         <Box sx={{
-          width: '100%',
-          maxWidth: '100%',
+          width: '100%', // Correction ici
+          maxWidth: '100vw', // Correction ici
           minHeight: 'calc(100vh - 250px)',
           display: 'block',
           px: 0,

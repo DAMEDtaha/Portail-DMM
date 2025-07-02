@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Box, Typography, Paper, List, ListItem, ListItemText, Avatar, IconButton, Button
+  Box, Typography, Paper, List, ListItem, ListItemText, Avatar, IconButton, Button, Divider, Grid
 } from "@mui/material";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -30,10 +30,25 @@ const factures = [
 ];
 
 export default function Factures() {
+  // Supprimer le scroll horizontal globalement
+  useEffect(() => {
+    document.body.style.overflowX = 'hidden';
+    document.documentElement.style.overflowX = 'hidden';
+    const root = document.getElementById('root');
+    if (root) root.style.overflowX = 'hidden';
+    return () => {
+      document.body.style.overflowX = '';
+      document.documentElement.style.overflowX = '';
+      if (root) root.style.overflowX = '';
+    };
+  }, []);
+
   const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const clientEmail = params.get("client");
+
+  const [factureDetail, setFactureDetail] = useState(null);
 
   const facturesFiltres = clientEmail
     ? factures.filter(f => f.clientEmail === clientEmail)
@@ -43,16 +58,21 @@ export default function Factures() {
     <Box
       sx={{
         p: 3,
-        maxWidth: 700,
-        mx: "auto",
-        minHeight: "80vh",
+        width: "100%",
+        maxWidth: 2400,
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: "flex-start",
+        alignItems: "stretch",
         background: "linear-gradient(135deg, #fef9c3 0%, #f8fafc 100%)",
-        borderRadius: 4,
-        boxShadow: "0 8px 32px 0 rgba(234,179,8,0.10)",
+        borderRadius: 0,
+        boxShadow: "none",
+        overflowX: "hidden",
+        fontFamily: 'Inter, Roboto, Arial, sans-serif',
+        color: '#222',
+        fontSize: '1.25rem',
+        letterSpacing: 0.1,
       }}
     >
       <IconButton
@@ -68,20 +88,87 @@ export default function Factures() {
       >
         <ArrowBackIcon fontSize="inherit" />
       </IconButton>
+
+      {/* Affichage du détail de la facture sélectionnée */}
+      {factureDetail && (
+        <Paper
+          sx={{
+            p: 4,
+            borderRadius: 4,
+            width: "100%",
+            maxWidth: "100%",
+            mb: 3,
+            background: "rgba(255,255,255,0.98)",
+            boxShadow: "0 4px 24px 0 rgba(234,179,8,0.08)",
+            overflowX: "hidden",
+            fontFamily: 'Inter, Roboto, Arial, sans-serif',
+            color: '#222',
+            fontSize: '1.25rem',
+            letterSpacing: 0.1,
+          }}
+          elevation={0}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", mb: 2, width: "100%" }}>
+            <ReceiptIcon sx={{ color: "#eab308", fontSize: 36, mr: 1 }} />
+            <Typography variant="h5" fontWeight={700} color="#eab308">
+              Détail de la facture #{factureDetail.id}
+            </Typography>
+          </Box>
+          <Divider sx={{ mb: 2 }} />
+          <Grid container spacing={2} sx={{ width: "100%", flexWrap: "wrap" }}>
+            <Grid item xs={12} sm={6}>
+              <Typography fontWeight={600}>Client :</Typography>
+              <Typography color="text.secondary">{factureDetail.client}</Typography>
+              <Typography fontWeight={600} sx={{ mt: 1 }}>Email :</Typography>
+              <Typography color="text.secondary">{factureDetail.clientEmail}</Typography>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Typography fontWeight={600}>Date :</Typography>
+              <Typography color="text.secondary">{factureDetail.date}</Typography>
+              <Typography fontWeight={600} sx={{ mt: 1 }}>Statut :</Typography>
+              <Typography color={factureDetail.statut === "Payée" ? "success.main" : "warning.main"}>
+                {factureDetail.statut}
+              </Typography>
+              <Typography fontWeight={600} sx={{ mt: 1 }}>Montant :</Typography>
+              <Typography color="text.secondary">{factureDetail.montant}</Typography>
+            </Grid>
+          </Grid>
+          <Divider sx={{ my: 2 }} />
+          <Typography fontWeight={600}>Description :</Typography>
+          <Typography color="text.secondary">{factureDetail.description}</Typography>
+          <Box sx={{ mt: 3, textAlign: "right" }}>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={() => setFactureDetail(null)}
+              startIcon={<InfoIcon />}
+            >
+              Fermer le détail
+            </Button>
+          </Box>
+        </Paper>
+      )}
+
       <Paper
         sx={{
           p: 4,
           borderRadius: 4,
           width: "100%",
+          maxWidth: "100%",
           background: "rgba(255,255,255,0.95)",
           boxShadow: "0 4px 24px 0 rgba(234,179,8,0.08)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          overflowX: "hidden",
+          fontFamily: 'Inter, Roboto, Arial, sans-serif',
+          color: '#222',
+          fontSize: '1.25rem',
+          letterSpacing: 0.1,
         }}
         elevation={0}
       >
-        <Typography variant="h4" sx={{ mb: 3, fontWeight: 700, color: "#eab308", letterSpacing: 1, textShadow: "0 2px 8px rgba(234,179,8,0.08)" }}>
+        <Typography variant="h4" sx={{ mb: 3, fontWeight: 700, color: "#eab308", letterSpacing: 1, textShadow: "0 2px 8px rgba(234,179,8,0.08)", width: "100%", textAlign: "left" }}>
           <ReceiptIcon sx={{ mr: 1, color: "#eab308", fontSize: 36 }} />
           Liste des factures
         </Typography>
@@ -101,7 +188,7 @@ export default function Factures() {
                   variant="contained"
                   color="secondary"
                   size="small"
-                  onClick={() => navigate(`/admin/factures/${facture.id}?client=${encodeURIComponent(facture.clientEmail)}`)}
+                  onClick={() => setFactureDetail(facture)}
                   sx={{
                     bgcolor: "#eab308",
                     color: "#fff",

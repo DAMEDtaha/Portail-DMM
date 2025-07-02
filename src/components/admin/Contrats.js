@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box, Typography, Paper, List, ListItem, ListItemText, Avatar, IconButton, Button, Grid, Divider
 } from "@mui/material";
@@ -34,6 +34,19 @@ const contrats = [
 ];
 
 export default function Contrats() {
+  // Supprimer le scroll horizontal globalement
+  useEffect(() => {
+    document.body.style.overflowX = 'hidden';
+    document.documentElement.style.overflowX = 'hidden';
+    const root = document.getElementById('root');
+    if (root) root.style.overflowX = 'hidden';
+    return () => {
+      document.body.style.overflowX = '';
+      document.documentElement.style.overflowX = '';
+      if (root) root.style.overflowX = '';
+    };
+  }, []);
+
   const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -51,16 +64,21 @@ export default function Contrats() {
     <Box
       sx={{
         p: 3,
-        maxWidth: 700,
-        mx: "auto",
-        minHeight: "80vh",
+        width: "100%",
+        maxWidth: 2400,
+        minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: "flex-start",
+        alignItems: "stretch",
         background: "linear-gradient(135deg, #ede9fe 0%, #f8fafc 100%)",
-        borderRadius: 4,
-        boxShadow: "0 8px 32px 0 rgba(124,58,237,0.10)",
+        borderRadius: 0,
+        boxShadow: "none",
+        overflowX: "hidden",
+        fontFamily: 'Inter, Roboto, Arial, sans-serif',
+        color: '#222',
+        fontSize: '1.25rem', // Agrandir la taille d'écriture pour plus de lisibilité
+        letterSpacing: 0.1,
       }}
     >
       <IconButton
@@ -84,20 +102,26 @@ export default function Contrats() {
             p: 4,
             borderRadius: 4,
             width: "100%",
+            maxWidth: "100%",
             mb: 3,
             background: "rgba(255,255,255,0.98)",
             boxShadow: "0 4px 24px 0 rgba(124,58,237,0.08)",
+            overflowX: "hidden",
+            fontFamily: 'Inter, Roboto, Arial, sans-serif',
+            color: '#222',
+            fontSize: '1.25rem', // Agrandir la taille d'écriture pour plus de lisibilité
+            letterSpacing: 0.1,
           }}
           elevation={0}
         >
-          <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+          <Box sx={{ display: "flex", alignItems: "center", mb: 2, width: "100%" }}>
             <AssignmentIcon sx={{ color: "#7c3aed", fontSize: 36, mr: 1 }} />
             <Typography variant="h5" fontWeight={700} color="#7c3aed">
               Détail du contrat #{contratDetail.id}
             </Typography>
           </Box>
           <Divider sx={{ mb: 2 }} />
-          <Grid container spacing={2}>
+          <Grid container spacing={2} sx={{ width: "100%", flexWrap: "wrap" }}>
             <Grid item xs={12} sm={6}>
               <Typography fontWeight={600}>Client :</Typography>
               <Typography color="text.secondary">{contratDetail.client}</Typography>
@@ -140,19 +164,25 @@ export default function Contrats() {
           p: 4,
           borderRadius: 4,
           width: "100%",
+          maxWidth: "100%",
           background: "rgba(255,255,255,0.95)",
           boxShadow: "0 4px 24px 0 rgba(124,58,237,0.08)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          overflowX: "hidden",
+          fontFamily: 'Inter, Roboto, Arial, sans-serif',
+          color: '#222',
+          fontSize: '1.25rem', // Agrandir la taille d'écriture pour plus de lisibilité
+          letterSpacing: 0.1,
         }}
         elevation={0}
       >
-        <Typography variant="h4" sx={{ mb: 3, fontWeight: 700, color: "#7c3aed", letterSpacing: 1, textShadow: "0 2px 8px rgba(124,58,237,0.08)" }}>
+        <Typography variant="h4" sx={{ mb: 3, fontWeight: 700, color: "#7c3aed", letterSpacing: 1, textShadow: "0 2px 8px rgba(124,58,237,0.08)", width: "100%", textAlign: "left" }}>
           <AssignmentIcon sx={{ mr: 1, color: "#7c3aed", fontSize: 36 }} />
           Liste des contrats
         </Typography>
-        <List sx={{ width: "100%" }}>
+        <List sx={{ width: "100%", maxWidth: "100vw" }}>
           {contratsFiltres.map(contrat => (
             <ListItem
               key={contrat.id}
