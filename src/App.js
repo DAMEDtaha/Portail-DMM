@@ -20,6 +20,7 @@ import ContratDetail from "./components/admin/ContratDetail";
 import CommandeDetail from "./components/admin/CommandeDetail";
 import FactureDetail from "./components/admin/FactureDetail";
 import ForgotPassword from "./components/auth/forgot-password";
+import CreerUtilisateur from "./components/admin/CreerUtilisateur";
 function App() {
   return (
     <Router>
@@ -56,6 +57,7 @@ function App() {
           <Route path="/admin/Contrats/:id" element={<ContratDetail />} />
           <Route path="/admin/commandes/:id" element={<CommandeDetail />} />
           <Route path="/admin/factures/:id" element={<FactureDetail />} />
+          <Route path="/admin/creer-utilisateur" element={<CreerUtilisateur />} />
         </Route>
         
       </Routes>

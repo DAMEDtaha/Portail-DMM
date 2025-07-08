@@ -468,64 +468,96 @@ function Dashboard() {
 
   return (
     <DashboardBackground>
-      {/* Ajout d'une petite navbar en haut du dashboard */}
-      <Box sx={{
-        width: '100%',
-        bgcolor: '#663399',
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        px: { xs: 2, md: 6 },
-        py: { xs: 2, md: 2.5 },
-        minHeight: { xs: 60, md: 80 },
-        boxShadow: '0 2px 12px #66339922',
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
-      }}>
-        {/* Partie gauche : nom de l'entreprise */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1 }}>
-          <Typography sx={{ fontWeight: 700, fontSize: { xs: 18, md: 26 }, letterSpacing: 1, textShadow: '0 2px 8px #4b1c7d88' }}>
-            Digital Media Mobile
-          </Typography>
+      {/* Ajout d'une petite navbar en haut du dashboard */} 
+      <Box 
+        sx={{ 
+          width: '100%', 
+          bgcolor: '#663399', 
+          color: '#fff', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between', 
+          px: { xs: 2, md: 6 }, 
+          py: { xs: 2, md: 2.5 }, 
+          minHeight: { xs: 60, md: 80 }, 
+          boxShadow: '0 2px 12px #66339922', 
+          position: 'sticky', 
+          top: 0, 
+          zIndex: 100, 
+        }} 
+      > 
+        {/* Partie gauche : nom de l'entreprise */} 
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 0.8 }}> 
+          <Typography 
+            sx={{ 
+              fontWeight: 700, 
+              fontSize: { xs: 18, md: 26 }, 
+              letterSpacing: 1, 
+              textShadow: '0 2px 8px #4b1c7d88', 
+            }} 
+          > 
+            Digital Media Mobile 
+          </Typography> 
+        </Box> 
+      
+        {/* Partie centrale : message de bienvenue + nom utilisateur */} 
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            flex: 0.8, 
+          }} 
+        > 
+          <Typography 
+            sx={{ 
+              fontWeight: 700, 
+              fontSize: { xs: 22, md: 32 }, 
+              letterSpacing: 1, 
+              textShadow: '0 2px 8px #4b1c7d88', 
+              textAlign: 'center', 
+              width: '100%', 
+            }} 
+          > 
+            Bienvenue{clientName ? `, ${clientName}` : ''} ! 
+          </Typography> 
+        </Box> 
+      
+        {/* Partie droite : bouton déconnexion */} 
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'flex-end', 
+            flex: 0.8, 
+            pr: { xs: 1, md: 3 }, 
+            minWidth: 150, 
+          }} 
+        > 
+          <button 
+            onClick={() => { 
+              localStorage.removeItem('clientEmail'); 
+              window.location.href = '/'; 
+            }} 
+            style={{
+              background: '#fff',
+              color: '#663399',
+              border: 'none',
+              borderRadius: 8,
+              padding: '8px 22px',
+              fontWeight: 700,
+              fontSize: '1.1rem',
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px #fff4',
+              transition: 'background 0.2s',
+              minWidth: 140,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Déconnexion
+          </button>
         </Box>
-        {/* Partie centrale : message de bienvenue + nom utilisateur */}
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1 }}>
-          <Typography sx={{ fontWeight: 700, fontSize: { xs: 22, md: 32 }, letterSpacing: 1, textShadow: '0 2px 8px #4b1c7d88', textAlign: 'center', width: '100%' }}>
-            Bienvenue{clientName ? `, ${clientName}` : ''} !
-          </Typography>
-        </Box>
-       {/* Partie droite : bouton déconnexion */}
-<Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', flex: 1.5, ml: 1 }}>
-  <button
-    onClick={() => {
-      localStorage.removeItem('clientEmail');
-      window.location.href = '/';
-    }}
-    style={{
-      background: '#fff',
-      color: '#663399',
-      border: 'none',
-      borderRadius: 8,
-      padding: '8px 22px',
-      fontWeight: 700,
-      fontSize: '1.1rem',
-      cursor: 'pointer',
-      boxShadow: '0 2px 8px #fff4',
-      transition: 'background 0.2s',
-      marginLeft: 'auto', // ← on garde cette ligne pour le pousser à droite
-      display: 'block',
-      maxWidth: '100%',
-      whiteSpace: 'nowrap',
-      minWidth: 120,
-    }}
-  >
-    Déconnexion
-  </button>
-</Box>
-
-      </Box>  
+      </Box>
 
       <Container maxWidth={false} disableGutters sx={{
         px: 0,

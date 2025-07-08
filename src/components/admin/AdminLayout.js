@@ -19,6 +19,7 @@ const adminMenuItems = [
   { text: 'Commandes', icon: <ShoppingCartIcon />, path: '/admin/commandes' },
   { text: 'Factures', icon: <ReceiptIcon />, path: '/admin/factures' },
   { text: 'Profil', icon: <PersonIcon />, path: '/admin/profil' },
+  { text: 'Créer Utilisateur', icon: <PersonIcon />, path: '/admin/creer-utilisateur' },
 ];
 
 export default function AdminLayout() {
