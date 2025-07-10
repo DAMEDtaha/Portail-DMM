@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button, Typography, Alert } from '@mui/material';
+import creeruser from '../../assets/images/creeruser.png';
 
 export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
   const [crmId, setCrmId] = useState('');
@@ -49,86 +50,105 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
         p: 3,
         width: { sm: `calc(100% - ${drawerWidth}px)` },
         ml: { sm: `${drawerWidth}px` },
-        transition: (theme) => theme.transitions.create(['margin', 'width'], {
-          easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.leavingScreen,
-        }),
-        ...(sidebarOpen && {
-          transition: (theme) => theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-          }),
-        }),
-        bgcolor: '#f7f9fa',
+        bgcolor: '#f2f5fa',
         minHeight: '100vh',
         boxSizing: 'border-box',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       <Box
         sx={{
-          maxWidth: 900,
           width: '100%',
-          ml: 0,
-          mt: 8,
+          maxWidth: 2200,
+          display: 'flex',
+          bgcolor: '#ffffff',
+          borderRadius: 5,
+          overflow: 'hidden',
+          boxShadow: '0px 10px 40px rgba(0, 0, 0, 0.1)',
+          minHeight: 600,
         }}
       >
-        <Typography
-          variant="h4"
-          sx={{
-            fontWeight: 800,
-            color: '#18113c',
-            mb: 4,
-            textAlign: 'left',
-            fontSize: { xs: 28, md: 36 },
-            letterSpacing: 1,
-            position: 'relative',
-            '&:after': {
-              content: '""',
-              display: 'block',
-              width: '60px',
-              height: '4px',
-              backgroundColor: '#3797f7',
-              mt: 1,
-              borderRadius: '2px'
-            }
-          }}
-        >
-          Créer Utilisateur
-        </Typography>
-        
+        {/* Partie gauche avec l'image */}
         <Box
           sx={{
-            width: '100%',
+            flex: 1,
+            bgcolor: '#e8f0fe',
             display: 'flex',
-            justifyContent: 'flex-start',
+            alignItems: 'center',
+            justifyContent: 'center',
+            transition: 'all 0.4s ease',
+            '&:hover': {
+              transform: 'scale(1.02)',
+            },
           }}
         >
+          <img
+            src={creeruser}
+            alt="Créer utilisateur illustration"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              transition: 'all 0.4s ease',
+            }}
+          />
+        </Box>
+
+        {/* Partie droite avec le formulaire */}
+        <Box
+          sx={{
+            flex: 1,
+            p: { xs: 4, md: 6 },
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            bgcolor: '#ffffff',
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{
+              fontWeight: 800,
+              color: '#18113c',
+              mb: 10,
+              position: 'relative',
+              letterSpacing: 0.5,
+              '&:after': {
+                content: '""',
+                display: 'block',
+                width: '90px',
+                height: '6px',
+                backgroundColor: '#3797f7',
+                mt: 3,
+                borderRadius: '2px'
+              }
+            }}
+          >
+            Créer Utilisateur
+          </Typography>
+
+          {success && (
+            <Alert severity="success" sx={{ mb: 2 }}>
+              {success}
+            </Alert>
+          )}
+          {error && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              {error}
+            </Alert>
+          )}
+
           <Box
             component="form"
             onSubmit={handleSubmit}
             sx={{
-              width: '100%',
-              maxWidth: 600,
               display: 'flex',
               flexDirection: 'column',
-              gap: 3,
-              p: { xs: 2, md: 4 },
-              bgcolor: 'white',
-              borderRadius: 2,
-              boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.05)',
+              gap: 2,
             }}
           >
-            {success && (
-              <Alert severity="success" sx={{ mb: 2 }}>
-                {success}
-              </Alert>
-            )}
-            {error && (
-              <Alert severity="error" sx={{ mb: 2 }}>
-                {error}
-              </Alert>
-            )}
-            
             <TextField
               label="CRM ID"
               placeholder="Entrez le CRM ID"
@@ -139,10 +159,11 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
               InputProps={{
                 sx: {
                   bgcolor: '#f5f9ff',
-                  borderRadius: 2,
+                  borderRadius: 3,
                   fontWeight: 500,
                   fontSize: 16,
                   height: 56,
+                  transition: 'all 0.3s ease',
                   '&:hover fieldset': {
                     borderColor: '#3797f7 !important',
                   },
@@ -152,8 +173,8 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
                 },
               }}
               InputLabelProps={{
-                sx: { 
-                  fontWeight: 600, 
+                sx: {
+                  fontWeight: 600,
                   fontSize: 14,
                   color: '#5a6473',
                   '&.Mui-focused': {
@@ -162,7 +183,7 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
                 },
               }}
             />
-            
+
             <TextField
               label="VosFactures ID"
               placeholder="Entrez le VosFactures ID"
@@ -173,10 +194,11 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
               InputProps={{
                 sx: {
                   bgcolor: '#f5f9ff',
-                  borderRadius: 2,
+                  borderRadius: 3,
                   fontWeight: 500,
                   fontSize: 16,
                   height: 56,
+                  transition: 'all 0.3s ease',
                   '&:hover fieldset': {
                     borderColor: '#3797f7 !important',
                   },
@@ -186,8 +208,8 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
                 },
               }}
               InputLabelProps={{
-                sx: { 
-                  fontWeight: 600, 
+                sx: {
+                  fontWeight: 600,
                   fontSize: 14,
                   color: '#5a6473',
                   '&.Mui-focused': {
@@ -196,7 +218,7 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
                 },
               }}
             />
-            
+
             <TextField
               label="Mot de passe"
               placeholder="Entrez le mot de passe"
@@ -208,10 +230,11 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
               InputProps={{
                 sx: {
                   bgcolor: '#f5f9ff',
-                  borderRadius: 2,
+                  borderRadius: 3,
                   fontWeight: 500,
                   fontSize: 16,
                   height: 56,
+                  transition: 'all 0.3s ease',
                   '&:hover fieldset': {
                     borderColor: '#3797f7 !important',
                   },
@@ -221,8 +244,8 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
                 },
               }}
               InputLabelProps={{
-                sx: { 
-                  fontWeight: 600, 
+                sx: {
+                  fontWeight: 600,
                   fontSize: 14,
                   color: '#5a6473',
                   '&.Mui-focused': {
@@ -231,24 +254,25 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
                 },
               }}
             />
-            
+
             <Button
               type="submit"
               variant="contained"
               disabled={loading}
               sx={{
-                mt: 2,
+                mt: 1,
                 fontWeight: 700,
                 fontSize: 16,
                 bgcolor: '#3797f7',
-                borderRadius: 2,
+                borderRadius: 3,
                 py: 2,
                 px: 4,
                 textTransform: 'none',
-                boxShadow: 'none',
-                '&:hover': { 
+                transition: 'all 0.3s ease',
+                '&:hover': {
                   bgcolor: '#1877f2',
-                  boxShadow: '0px 4px 12px rgba(55, 151, 247, 0.3)'
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0px 6px 20px rgba(55, 151, 247, 0.3)',
                 },
                 '&:disabled': {
                   bgcolor: '#e0e0e0',
@@ -256,7 +280,7 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
                 }
               }}
             >
-              {loading ? 'Création en cours...' : 'Créer l\'utilisateur'}
+              {loading ? 'Création en cours...' : "Créer l'utilisateur"}
             </Button>
           </Box>
         </Box>

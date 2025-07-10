@@ -507,6 +507,7 @@ function Dashboard() {
             alignItems: 'center', 
             justifyContent: 'center', 
             flex: 0.8, 
+            maxWidth: 1800,
           }} 
         > 
           <Typography 
@@ -527,11 +528,11 @@ function Dashboard() {
         <Box 
           sx={{ 
             display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'flex-end', 
+            alignItems: 'center',  
             flex: 0.8, 
             pr: { xs: 1, md: 3 }, 
             minWidth: 150, 
+            maxWidth: 250,
           }} 
         > 
           <button 
