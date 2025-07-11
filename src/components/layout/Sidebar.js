@@ -15,6 +15,7 @@ import {
   Cases as CasesIcon,
   Chat as ChatIcon,
   Logout as LogoutIcon,
+  Storefront as StorefrontIcon,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
@@ -23,15 +24,14 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   const menuItems = [
     { text: 'Tableau de bord', icon: <DashboardIcon />, path: '/dashboard' },
     { text: 'Factures', icon: <ReceiptIcon />, path: '/factures' },
     { text: 'Commandes', icon: <OrdersIcon />, path: '/Orders' },
-    { text: 'Mes Contrats', icon: <ReceiptIcon />, path: '/bons-de-commandes' },
+    { text: 'Ma Vitrine', icon: <StorefrontIcon />, path: '/vitrine' },
     { text: 'Mon Compte', icon: <AccountIcon />, path: '/Profil' },
     { text: 'Support', icon: <CasesIcon />, path: '/cases' },
-    
   ];
 
   return (
@@ -40,10 +40,10 @@ const Sidebar = () => {
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
       sx={{
-        width: isExpanded ? 500 : 100, // largeur encore augmentée
+        width: isExpanded ? 500 : 100,
         flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: isExpanded ? 500 : 100, // largeur encore augmentée
+          width: isExpanded ? 500 : 100,
           boxSizing: 'border-box',
           bgcolor: '#663399',
           color: 'white',
@@ -114,10 +114,10 @@ const Sidebar = () => {
                 sx={{ 
                   opacity: isExpanded ? 1 : 0,
                   transition: 'opacity 0.3s ease-in-out',
-                  whiteSpace: 'nowrap', // force sur une seule ligne
-                  overflow: 'visible', // pas de coupure
-                  textOverflow: 'unset', // pas de points de suspension
-                  maxWidth: 'none', // pas de limite de largeur
+                  whiteSpace: 'nowrap',
+                  overflow: 'visible',
+                  textOverflow: 'unset',
+                  maxWidth: 'none',
                   '& .MuiListItemText-primary': { 
                     fontSize: '1.45rem',
                     fontWeight: location.pathname === item.path ? 800 : 600,
@@ -136,7 +136,6 @@ const Sidebar = () => {
           </ListItem>
         ))}
       </List>
-      {/* Ajout du bouton Se déconnecter en bas */}
       <Box sx={{ flexGrow: 1 }} />
       <List sx={{ mb: 2 }}>
         <ListItem
@@ -189,7 +188,6 @@ const Sidebar = () => {
           )}
         </ListItem>
       </List>
-      {/* Fin ajout */}
     </Drawer>
   );
 };

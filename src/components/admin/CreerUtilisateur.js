@@ -21,7 +21,7 @@ export default function CreerUtilisateur({ drawerWidth = 240, sidebarOpen }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ crmId })
       });
-      await fetch('https://vosfactures.fr', {
+      await fetch('https://votrecompte.vosfactures.fr', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ vosFacturesId })

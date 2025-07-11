@@ -8,7 +8,6 @@ import Invoices from './invoices/Invoices';
 import Cases from "./components/cases/Cases";
 import Profil from "./components/profil/Profil";
 import Chatbot from "./components/chatbot/Chatbot";
-import BonsDeCommandes from './components/bonsDeCommandes/BonsDeCommandes';
 import AdminDashboard from "./components/admin/AdminDashboard"; 
 import Clients from "./components/admin/Clients";
 import Contrats from "./components/admin/Contrats";
@@ -20,6 +19,7 @@ import ContratDetail from "./components/admin/ContratDetail";
 import CommandeDetail from "./components/admin/CommandeDetail";
 import FactureDetail from "./components/admin/FactureDetail";
 import ForgotPassword from "./components/auth/forgot-password";
+import MaVitrine from "./components/mavitrine/MaVitrine";
 import CreerUtilisateur from "./components/admin/CreerUtilisateur";
 function App() {
   return (
@@ -38,9 +38,9 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/Orders" element={<Orders />} />
           <Route path="/factures" element={<Invoices />} />
+          <Route path="/vitrine" element={<MaVitrine />} />
           <Route path="/Profil" element={<Profil />} />
           <Route path="/cases" element={<Cases />} />
-          <Route path="/bons-de-commandes" element={<BonsDeCommandes />} />
           
         </Route>
 
