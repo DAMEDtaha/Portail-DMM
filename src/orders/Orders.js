@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {
@@ -285,77 +284,219 @@ function Orders() {
         body: { overflowX: 'hidden', width: '100vw' },
         '#root': { overflowX: 'hidden', width: '100vw' },
       }} />
-      <Box sx={{ bgcolor: '#fafafa', minHeight: '100vh', minWidth: '100vw', width: '100vw', height: '100vh', pb: 6, fontFamily: 'Inter, Roboto, Arial, sans-serif', px: 0, overflowX: 'hidden' }}>
+      <Box sx={{
+        bgcolor: '#fafafa',
+        minHeight: '100vh',
+        minWidth: '100vw',
+        width: '100vw',
+        height: '100vh',
+        pb: 6,
+        fontFamily: 'Inter, Roboto, Arial, sans-serif',
+        px: 0,
+        overflowX: 'hidden',
+        position: 'relative', // Ajouté pour les SVG décoratifs
+        overflow: 'hidden',
+      }}>
+        {/* SVG décoratif haut gauche */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: -80,
+            left: -120,
+            zIndex: 0,
+            opacity: 1,
+            pointerEvents: 'none',
+          }}
+        >
+          <svg width="320" height="320" viewBox="0 0 320 320" fill="none">
+            <circle cx="160" cy="160" r="160" fill="#a78bfa" />
+          </svg>
+        </Box>
+        {/* SVG décoratif bas droite */}
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: -100,
+            right: -100,
+            zIndex: 0,
+            opacity: 1,
+            pointerEvents: 'none',
+          }}
+        >
+          <svg width="260" height="260" viewBox="0 0 260 260" fill="none">
+            <rect x="0" y="0" width="260" height="260" rx="80" fill="#6a1b9a" />
+          </svg>
+        </Box>
+        {/* SVG Personnage à gauche */}
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: 40,
+            left: -30,
+            zIndex: 0,
+            opacity: 1,
+            pointerEvents: 'none',
+            display: { xs: 'none', md: 'block' }
+          }}
+        >
+          <svg width="140" height="180" viewBox="0 0 140 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="70" cy="170" rx="50" ry="10" fill="#ede7f6"/>
+            <circle cx="70" cy="60" r="35" fill="#b39ddb"/>
+            <ellipse cx="70" cy="120" rx="32" ry="40" fill="#9575cd"/>
+            <rect x="55" y="110" width="30" height="40" rx="12" fill="#ede7f6"/>
+            <ellipse cx="55" cy="130" rx="7" ry="12" fill="#b39ddb"/>
+            <ellipse cx="85" cy="130" rx="7" ry="12" fill="#b39ddb"/>
+            <ellipse cx="70" cy="60" rx="10" ry="8" fill="#fff"/>
+            <ellipse cx="60" cy="58" rx="4" ry="3" fill="#6a1b9a"/>
+            <ellipse cx="80" cy="58" rx="4" ry="3" fill="#6a1b9a"/>
+            <rect x="65" y="70" width="10" height="4" rx="2" fill="#6a1b9a"/>
+          </svg>
+        </Box>
+        {/* SVG Facture à droite */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 60,
+            right: 40,
+            zIndex: 0,
+            opacity: 1,
+            pointerEvents: 'none',
+            display: { xs: 'none', md: 'block' }
+          }}
+        >
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <rect x="10" y="20" width="100" height="80" rx="18" fill="#ede7f6"/>
+            <rect x="25" y="40" width="70" height="40" rx="10" fill="#d1c4e9"/>
+            <rect x="35" y="50" width="50" height="8" rx="4" fill="#b39ddb"/>
+            <rect x="35" y="65" width="30" height="6" rx="3" fill="#b39ddb"/>
+            <circle cx="95" cy="90" r="7" fill="#9575cd"/>
+            <circle cx="25" cy="35" r="4" fill="#9575cd"/>
+          </svg>
+        </Box>
+        {/* SVG Personnages au centre pour expérience vivante */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            zIndex: 0,
+            opacity: 1,
+            pointerEvents: 'none',
+            display: { xs: 'none', md: 'block' }
+          }}
+        >
+          <svg width="340" height="180" viewBox="0 0 340 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* Personnage 1 */}
+            <ellipse cx="70" cy="170" rx="40" ry="8" fill="#ede7f6"/>
+            <circle cx="70" cy="90" r="32" fill="#b39ddb"/>
+            <ellipse cx="70" cy="130" rx="28" ry="32" fill="#9575cd"/>
+            <rect x="54" y="120" width="32" height="36" rx="12" fill="#ede7f6"/>
+            <ellipse cx="60" cy="140" rx="6" ry="10" fill="#b39ddb"/>
+            <ellipse cx="80" cy="140" rx="6" ry="10" fill="#b39ddb"/>
+            <ellipse cx="70" cy="90" rx="8" ry="7" fill="#fff"/>
+            {/* Personnage 2 */}
+            <ellipse cx="170" cy="170" rx="40" ry="8" fill="#ede7f6"/>
+            <circle cx="170" cy="90" r="32" fill="#ffd54f"/>
+            <ellipse cx="170" cy="130" rx="28" ry="32" fill="#ffb300"/>
+            <rect x="154" y="120" width="32" height="36" rx="12" fill="#fffde7"/>
+            <ellipse cx="160" cy="140" rx="6" ry="10" fill="#ffe082"/>
+            <ellipse cx="180" cy="140" rx="6" ry="10" fill="#ffe082"/>
+            <ellipse cx="170" cy="90" rx="8" ry="7" fill="#fff"/>
+            {/* Personnage 3 */}
+            <ellipse cx="270" cy="170" rx="40" ry="8" fill="#ede7f6"/>
+            <circle cx="270" cy="90" r="32" fill="#81d4fa"/>
+            <ellipse cx="270" cy="130" rx="28" ry="32" fill="#0288d1"/>
+            <rect x="254" y="120" width="32" height="36" rx="12" fill="#e1f5fe"/>
+            <ellipse cx="260" cy="140" rx="6" ry="10" fill="#4fc3f7"/>
+            <ellipse cx="280" cy="140" rx="6" ry="10" fill="#4fc3f7"/>
+            <ellipse cx="270" cy="90" rx="8" ry="7" fill="#fff"/>
+            {/* Factures flottantes */}
+            <rect x="110" y="30" width="28" height="18" rx="4" fill="#ede7f6" stroke="#b39ddb" strokeWidth="2"/>
+            <rect x="210" y="20" width="28" height="18" rx="4" fill="#ede7f6" stroke="#b39ddb" strokeWidth="2"/>
+            <rect x="150" y="60" width="28" height="18" rx="4" fill="#ede7f6" stroke="#b39ddb" strokeWidth="2"/>
+          </svg>
+        </Box>
         {/* En-tête Commandes */}
-        <Container maxWidth={false} disableGutters sx={{ pt: 6, pb: 2, width: '100vw', maxWidth: '100vw', px: { xs: 2, md: 6 }, overflowX: 'hidden' }}>
-          <Typography variant="h3" sx={{ fontWeight: 800, fontSize: { xs: 32, md: 38 }, color: '#111', mb: 2, textAlign: 'left', letterSpacing: 0.5 }}>
-            Commandes
-          </Typography>
-          {/* Filtres avancés */}
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3, alignItems: 'center' }}>
-            {/* Recherche par nom de commande */}
-            <TextField
-              label={<><AssignmentIcon sx={{ fontSize: 28, color: '#663399', mr: 1, verticalAlign: 'middle' }} /> <span style={{fontSize:22,fontWeight:800}}>Rechercher par nom de commande</span></>}
-              size="medium"
-              value={searchProjet}
-              onChange={(e) => setSearchProjet(e.target.value)}
-              sx={{ bgcolor: '#fff', borderRadius: '16px', minWidth: 260, fontSize: 18, '.MuiInputBase-input': { fontSize: 18, fontWeight: 600, color: '#222', height: 28, padding: '14px 12px' }, '.MuiInputLabel-root': { fontSize: 22, fontWeight: 800 } }}
-              InputProps={{ style: { borderRadius: 16, fontSize: 18, fontWeight: 600, color: '#222', height: 56 }, sx: { height: 56 } }}
-              InputLabelProps={{ shrink: true, style: { fontSize: 22, fontWeight: 800 } }}
-            />
-            {/* Filtre par service */}
-            <TextField
-              select
-              label={<><InfoIcon sx={{ fontSize: 28, color: '#663399', mr: 1, verticalAlign: 'middle' }} /> <span style={{fontSize:22,fontWeight:800}}>Service</span></>}
-              size="medium"
-              value={filterProjetService}
-              onChange={(e) => setFilterProjetService(e.target.value)}
-              sx={{ bgcolor: '#fff', borderRadius: '16px', minWidth: 180, fontSize: 18, '.MuiInputBase-input': { fontSize: 18, fontWeight: 600, color: '#222', height: 28, padding: '14px 12px' }, '.MuiInputLabel-root': { fontSize: 22, fontWeight: 800 } }}
-              InputProps={{ style: { borderRadius: 16, fontSize: 18, fontWeight: 600, color: '#222', height: 56 }, sx: { height: 56 } }}
-              InputLabelProps={{ shrink: true, style: { fontSize: 22, fontWeight: 800 } }}
-            >
-              <MenuItem value="">Tous</MenuItem>
-              {["Forfait Duo", "Le trio", "Referencement", "Site web", "SEO", "SEA", "Community", "E-reputation"]
-                .concat(Array.from(new Set(projets.map((o) => o.produit ? (o.produit.designation || o.produit) : o.service || ''))).filter(Boolean))
-                .filter((v, i, arr) => arr.indexOf(v) === i)
-                .map((service) => (
-                  <MenuItem key={service} value={service} style={{ fontSize: 18, fontWeight: 600 }}>{service}</MenuItem>
-              ))}
-            </TextField>
-            {/* Filtre par statut */}
-            <TextField
-              select
-              label={<><EventIcon sx={{ fontSize: 28, color: '#663399', mr: 1, verticalAlign: 'middle' }} /> <span style={{fontSize:22,fontWeight:800}}>Statut</span></>}
-              size="medium"
-              value={filterProjetStatus}
-              onChange={(e) => setFilterProjetStatus(e.target.value)}
-              sx={{ bgcolor: '#fff', borderRadius: '16px', minWidth: 150, fontSize: 18, '.MuiInputBase-input': { fontSize: 18, fontWeight: 600, color: '#222', height: 28, padding: '14px 12px' }, '.MuiInputLabel-root': { fontSize: 22, fontWeight: 800 } }}
-              InputProps={{ style: { borderRadius: 16, fontSize: 18, fontWeight: 600, color: '#222', height: 56 }, sx: { height: 56 } }}
-              InputLabelProps={{ shrink: true, style: { fontSize: 22, fontWeight: 800 } }}
-            >
-              <MenuItem value="">Tous</MenuItem>
-              <MenuItem value="En attente" style={{ fontSize: 18, fontWeight: 600 }}>En attente</MenuItem>
-              <MenuItem value="En cours" style={{ fontSize: 18, fontWeight: 600 }}>En cours</MenuItem>
-              <MenuItem value="Livré" style={{ fontSize: 18, fontWeight: 600 }}>Livré</MenuItem>
-            </TextField>
-            {/* Filtre par nom du client */}
-            <TextField
-              select
-              label={<><PersonIcon sx={{ fontSize: 28, color: '#663399', mr: 1, verticalAlign: 'middle' }} /> <span style={{fontSize:22,fontWeight:800}}>Nom du client</span></>}
-              size="medium"
-              value={filterClientName || ''}
-              onChange={(e) => setFilterClientName(e.target.value)}
-              sx={{ bgcolor: '#fff', borderRadius: '16px', minWidth: 180, fontSize: 18, '.MuiInputBase-input': { fontSize: 18, fontWeight: 600, color: '#222', height: 28, padding: '14px 12px' }, '.MuiInputLabel-root': { fontSize: 22, fontWeight: 800 } }}
-              InputProps={{ style: { borderRadius: 16, fontSize: 18, fontWeight: 600, color: '#222', height: 56 }, sx: { height: 56 } }}
-              InputLabelProps={{ shrink: true, style: { fontSize: 22, fontWeight: 800 } }}
-            >
-              <MenuItem value="">Tous</MenuItem>
-              {Array.from(new Set(projets.map((o) => o.client && o.client.nom ? o.client.nom : ''))).filter(Boolean).map((nom) => (
-                <MenuItem key={nom} value={nom} style={{ fontSize: 18, fontWeight: 600 }}>{nom}</MenuItem>
-              ))}
-            </TextField>
+        <Box sx={{ position: 'relative', width: '100%' }}>
+          {/* Illustration décorative en haut à droite */}
+          <Box sx={{ position: 'absolute', top: -40, right: 0, zIndex: 0, opacity: 0.18 }}>
+            <img src="/assets/images/illustration-orders.svg" alt="Orders Illustration" style={{ width: 320, maxWidth: '30vw', minWidth: 120 }} />
           </Box>
-        </Container>
+          <Container maxWidth={false} disableGutters sx={{ pt: 6, pb: 2, width: '100vw', maxWidth: '100vw', px: { xs: 2, md: 6 }, overflowX: 'hidden', position: 'relative', zIndex: 1 }}>
+            <Typography variant="h3" sx={{ fontWeight: 800, fontSize: { xs: 32, md: 38 }, color: '#111', mb: 2, textAlign: 'left', letterSpacing: 0.5, display: 'flex', alignItems: 'center', gap: 2 }}>
+              <ShoppingCartIcon sx={{ fontSize: 48, color: '#663399', mr: 1 }} />
+              Commandes
+              <Box component="span" sx={{ ml: 2, bgcolor: '#ede9fe', color: '#663399', px: 2, py: 0.5, borderRadius: 3, fontWeight: 700, fontSize: 22, display: { xs: 'none', md: 'inline-block' } }}>
+                {projetsFiltres.length} commandes
+              </Box>
+            </Typography>
+            {/* Filtres avancés */}
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 3, alignItems: 'center' }}>
+              {/* Recherche par nom de commande */}
+              <TextField
+                label={<><AssignmentIcon sx={{ fontSize: 28, color: '#663399', mr: 1, verticalAlign: 'middle' }} /> <span style={{fontSize:22,fontWeight:800}}>Rechercher par nom de commande</span></>}
+                size="medium"
+                value={searchProjet}
+                onChange={(e) => setSearchProjet(e.target.value)}
+                sx={{ bgcolor: '#fff', borderRadius: '16px', minWidth: 260, fontSize: 18, '.MuiInputBase-input': { fontSize: 18, fontWeight: 600, color: '#222', height: 28, padding: '14px 12px' }, '.MuiInputLabel-root': { fontSize: 22, fontWeight: 800 } }}
+                InputProps={{ style: { borderRadius: 16, fontSize: 18, fontWeight: 600, color: '#222', height: 56 }, sx: { height: 56 } }}
+                InputLabelProps={{ shrink: true, style: { fontSize: 22, fontWeight: 800 } }}
+              />
+              {/* Filtre par service */}
+              <TextField
+                select
+                label={<><InfoIcon sx={{ fontSize: 28, color: '#663399', mr: 1, verticalAlign: 'middle' }} /> <span style={{fontSize:22,fontWeight:800}}>Service</span></>}
+                size="medium"
+                value={filterProjetService}
+                onChange={(e) => setFilterProjetService(e.target.value)}
+                sx={{ bgcolor: '#fff', borderRadius: '16px', minWidth: 180, fontSize: 18, '.MuiInputBase-input': { fontSize: 18, fontWeight: 600, color: '#222', height: 28, padding: '14px 12px' }, '.MuiInputLabel-root': { fontSize: 22, fontWeight: 800 } }}
+                InputProps={{ style: { borderRadius: 16, fontSize: 18, fontWeight: 600, color: '#222', height: 56 }, sx: { height: 56 } }}
+                InputLabelProps={{ shrink: true, style: { fontSize: 22, fontWeight: 800 } }}
+              >
+                <MenuItem value="">Tous</MenuItem>
+                {["Forfait Duo", "Le trio", "Referencement", "Site web", "SEO", "SEA", "Community", "E-reputation"]
+                  .concat(Array.from(new Set(projets.map((o) => o.produit ? (o.produit.designation || o.produit) : o.service || ''))).filter(Boolean))
+                  .filter((v, i, arr) => arr.indexOf(v) === i)
+                  .map((service) => (
+                    <MenuItem key={service} value={service} style={{ fontSize: 18, fontWeight: 600 }}>{service}</MenuItem>
+                ))}
+              </TextField>
+              {/* Filtre par statut */}
+              <TextField
+                select
+                label={<><EventIcon sx={{ fontSize: 28, color: '#663399', mr: 1, verticalAlign: 'middle' }} /> <span style={{fontSize:22,fontWeight:800}}>Statut</span></>}
+                size="medium"
+                value={filterProjetStatus}
+                onChange={(e) => setFilterProjetStatus(e.target.value)}
+                sx={{ bgcolor: '#fff', borderRadius: '16px', minWidth: 150, fontSize: 18, '.MuiInputBase-input': { fontSize: 18, fontWeight: 600, color: '#222', height: 28, padding: '14px 12px' }, '.MuiInputLabel-root': { fontSize: 22, fontWeight: 800 } }}
+                InputProps={{ style: { borderRadius: 16, fontSize: 18, fontWeight: 600, color: '#222', height: 56 }, sx: { height: 56 } }}
+                InputLabelProps={{ shrink: true, style: { fontSize: 22, fontWeight: 800 } }}
+              >
+                <MenuItem value="">Tous</MenuItem>
+                <MenuItem value="En attente" style={{ fontSize: 18, fontWeight: 600 }}>En attente</MenuItem>
+                <MenuItem value="En cours" style={{ fontSize: 18, fontWeight: 600 }}>En cours</MenuItem>
+                <MenuItem value="Livré" style={{ fontSize: 18, fontWeight: 600 }}>Livré</MenuItem>
+              </TextField>
+              {/* Filtre par nom du client */}
+              <TextField
+                select
+                label={<><PersonIcon sx={{ fontSize: 28, color: '#663399', mr: 1, verticalAlign: 'middle' }} /> <span style={{fontSize:22,fontWeight:800}}>Nom du client</span></>}
+                size="medium"
+                value={filterClientName || ''}
+                onChange={(e) => setFilterClientName(e.target.value)}
+                sx={{ bgcolor: '#fff', borderRadius: '16px', minWidth: 180, fontSize: 18, '.MuiInputBase-input': { fontSize: 18, fontWeight: 600, color: '#222', height: 28, padding: '14px 12px' }, '.MuiInputLabel-root': { fontSize: 22, fontWeight: 800 } }}
+                InputProps={{ style: { borderRadius: 16, fontSize: 18, fontWeight: 600, color: '#222', height: 56 }, sx: { height: 56 } }}
+                InputLabelProps={{ shrink: true, style: { fontSize: 22, fontWeight: 800 } }}
+              >
+                <MenuItem value="">Tous</MenuItem>
+                {Array.from(new Set(projets.map((o) => o.client && o.client.nom ? o.client.nom : ''))).filter(Boolean).map((nom) => (
+                  <MenuItem key={nom} value={nom} style={{ fontSize: 18, fontWeight: 600 }}>{nom}</MenuItem>
+                ))}
+              </TextField>
+            </Box>
+          </Container>
+        </Box>
         {/* Tableau commandes modernisé */}
         <Container maxWidth={false} disableGutters sx={{ pt: 0, width: '100vw', maxWidth: '100vw', px: { xs: 2, md: 6 }, overflowX: 'hidden' }}>
           <TableContainer component={Paper} sx={{ borderRadius: '16px', boxShadow: 'none', border: '1px solid #eee', mt: 2, width: '100%', maxWidth: '100vw', minWidth: 0, overflowX: 'hidden' }}>
